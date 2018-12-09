@@ -1,7 +1,7 @@
 # Prometheus Exporter for Alibaba Cloud
 
 ![license](https://img.shields.io/hexpm/l/plug.svg)
-![pypi](https://img.shields.io/pypi/dw/aliyun-exporter.svg)
+![pypi](https://img.shields.io/pypi/v/aliyun-exporter.svg)
 ![docker](https://img.shields.io/docker/pulls/aylei/aliyun-exporter.svg)
 
 [中文](#中文)
