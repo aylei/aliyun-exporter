@@ -27,7 +27,12 @@ This Prometheus exporter collects metrics from the [CloudMonitor API](https://he
 
 ![rds](/static/img/rds.png)
 
+Grafana Dashboards:
 
+* ECS: https://grafana.com/dashboards/9455
+* Telemetry: https://grafana.com/dashboards/9452
+* ECS Instance: https://grafana.com/dashboards/9458
+* RDS: https://grafana.com/dashboards/9461
 
 ## Installation
 
