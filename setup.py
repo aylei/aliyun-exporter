@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 setup(
     name='aliyun-exporter',
-    version='0.0.1',
-    description='Elasticsearch query Prometheus exporter',
+    version='0.1.0',
+    description='Alibaba Cloud CloudMonitor Prometheus exporter',
     url='https://github.com/Braedon/prometheus-es-exporter',
     author='Aylei Wu',
     author_email='rayingecho@gmail.com',
