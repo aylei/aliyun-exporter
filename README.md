@@ -34,6 +34,8 @@ Grafana Dashboards:
 * ECS Instance: https://grafana.com/dashboards/9458
 * RDS: https://grafana.com/dashboards/9461
 
+If you use `rename` in the [configuration](#configuration), you may change the metric name for the grafana dashboards as well.
+
 ## Installation
 
 Python 3.5+ is required.
@@ -166,6 +168,10 @@ metrics:
 ```bash
 docker run -p 9522:9522 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.2.0 -c $(pwd)/aliyun-exporter.yml
 ```
+
+## Grafana 看板
+
+预配置了一些 Grafana 看板. 见[Screenshots](#screenshots)
 
 ## 配置
 
