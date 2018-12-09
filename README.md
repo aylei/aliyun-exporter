@@ -1,5 +1,9 @@
 # Prometheus Exporter for Alibaba Cloud
 
+![license](https://img.shields.io/hexpm/l/plug.svg)
+![pypi](https://img.shields.io/pypi/dw/aliyun-exporter.svg)
+![docker](https://img.shields.io/docker/pulls/aylei/aliyun-exporter.svg)
+
 [中文](#中文)
 
 * [Screenshots](#screenshots)
@@ -62,6 +66,16 @@ The default port is 9522, default config file location is `./aliyun-exporter.yml
 Visit metrics in [localhost:9522/metrics](http://localhost:9522/metrics)
 
 ## Docker Image
+
+Install
+```bash
+docker pull aylei/aliyun-exporter:0.0.1
+```
+
+To run the container, external configuration file is required:
+```bash
+docker run -p 9522:9522 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.0.1 -c $(pwd)/aliyun-exporter.yml
+```
 
 ## Configuration
 
@@ -143,6 +157,10 @@ metrics:
 访问 [localhost:9522/metrics](http://localhost:9522/metrics) 查看指标抓取是否成功
 
 ## Docker 镜像
+
+```bash
+docker run -p 9522:9522 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.0.1 -c $(pwd)/aliyun-exporter.yml
+```
 
 ## 配置
 

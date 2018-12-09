@@ -9,11 +9,10 @@ setup(
     author_email='rayingecho@gmail.com',
     license='Apache 2.0',
     classifiers=[
-        'Development Status :: Alpha',
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
         'Topic :: System :: Monitoring',
-        'License :: OSI Approved :: Apache 2.0 License',
+        'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.7',
     ],
