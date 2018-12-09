@@ -14,7 +14,7 @@
 * [Scale and HA Setup](#scale-and-ha-setup)
 * [Contribute](#contribute)
 
-This Prometheus exporter collects metrics from the [CloudMonitor API](https://help.aliyun.com/document_detail/51939.html?spm=a2c4g.11186623.2.17.51dd750eNBecX1#reference-kxr-y2z-zdb) of Alibaba Cloud. It can help you:
+This Prometheus exporter collects metrics from the [CloudMonitor API](https://partners-intl.aliyun.com/help/doc-detail/51939.htm) of Alibaba Cloud. It can help you:
 
 * integrate the CloudMonitor to your Monitoring System.
 * leverage the power of PromQL, Alertmanager and Grafana(see [Screenshots](#)).
@@ -103,7 +103,7 @@ metrics: # required, metrics specifications
 
 Notes:
 
-* Find your target metrics in the [CloudMonitor Documentation](https://help.aliyun.com/document_detail/28619.html?spm=a2c4g.11186623.6.670.4cb92ea7URJUmT).
+* Find your target metrics in the [CloudMonitor Documentation](https://partners-intl.aliyun.com/help/doc-detail/28619.htm).
 * CloudMonitor API has an rate limit, tuning the `rate_limit` configuration if the requests are rejected.
 * CloudMonitor API also has an monthly quota for invocations (AFAIK, 5,000,000 invocations / month for free). Plan your usage in advance. 
 
