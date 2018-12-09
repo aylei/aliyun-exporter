@@ -3,12 +3,12 @@
 [中文](#中文)
 
 * [Screenshots](#screenshots)
-* [Installation](#Installation)
-* [Usage](#Usage)
-* [Docker Image](#DockerImage)
-* [Configuration](#Configuration)
-* [Scale and HA Setup](#ScaleAndHASetup)
-* [Contribute](#Contribute)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Docker Image](#docker-image)
+* [Configuration](#configuration)
+* [Scale and HA Setup](#scale-and-ha-setup)
+* [Contribute](#contribute)
 
 This Prometheus exporter collects metrics from the [CloudMonitor API](https://help.aliyun.com/document_detail/51939.html?spm=a2c4g.11186623.2.17.51dd750eNBecX1#reference-kxr-y2z-zdb) of Alibaba Cloud. It can help you:
 
