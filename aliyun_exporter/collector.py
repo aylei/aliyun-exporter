@@ -51,8 +51,8 @@ class AliyunCollector(object):
             start_time = time.time()
             try:
                 resp = self.client.do_action_with_exception(req)
-            except:
-                logging.error("Error request cloud monitor api")
+            except Exception as e:
+                logging.error('Error request cloud monitor api', e)
                 requestFailedSummary.labels(project).observe(time.time() - start_time)
                 return []
             else:
@@ -84,8 +84,8 @@ class AliyunCollector(object):
 
         try:
             points = self.query_metric(project, metric_name, period)
-        except:
-            logging.error('Error query metrics for {}_{}'.format(project, metric_name))
+        except Exception as e:
+            logging.error('Error query metrics for {}_{}'.format(project, metric_name), e)
             yield metric_up_gauge(self.format_metric_name(project, name), False)
             return
         if len(points) < 1:
