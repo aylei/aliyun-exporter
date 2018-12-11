@@ -107,7 +107,7 @@ Notes:
 * CloudMonitor API has an rate limit, tuning the `rate_limit` configuration if the requests are rejected.
 * CloudMonitor API also has an monthly quota for invocations (AFAIK, 5,000,000 invocations / month for free). Plan your usage in advance. 
 
-> Given that you have 50 metrics to scrape with 60s scrape interval, about 2,160,000 requests will be set by the exporter for 30 days.
+> Given that you have 50 metrics to scrape with 60s scrape interval, about 2,160,000 requests will be sent by the exporter for 30 days.
 
 ## Telemetry
 
@@ -125,7 +125,7 @@ For HA setup, simply duplicate your deployments: 2 * prometheus, and 2 * exporte
 
 ## Contribute
 
-Feel free to open issues and pull requests. Besides, I am a golang and java programmer, this project is a practice for python. Let know if you have any advice for my code style or logic. Any feedback will be highly appreciated!
+Feel free to open issues and pull requests. Besides, I am a golang and java programmer, this project is a practice for python. Let me know if you have any advice for my code style or logic. Any feedback will be highly appreciated!
 
 # 中文
 
