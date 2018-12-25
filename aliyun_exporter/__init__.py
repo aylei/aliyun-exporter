@@ -25,7 +25,7 @@ def main():
     parser = argparse.ArgumentParser(description="Aliyun CloudMonitor exporter for Prometheus.")
     parser.add_argument('-c', '--config-file', default='aliyun-exporter.yml',
                        help='path to configuration file.')
-    parser.add_argument('-p', '--port', default=9522,
+    parser.add_argument('-p', '--port', default=9525,
                         help='exporter exposed port')
     args = parser.parse_args()
 

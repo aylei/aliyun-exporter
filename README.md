@@ -65,12 +65,12 @@ metrics:
 Run the exporter:
 
 ```bash
-> aliyun-exporter -p 9522 -c aliyun-exporter.yml
+> aliyun-exporter -p 9525 -c aliyun-exporter.yml
 ```
 
-The default port is 9522, default config file location is `./aliyun-exporter.yml`.
+The default port is 9525, default config file location is `./aliyun-exporter.yml`.
 
-Visit metrics in [localhost:9522/metrics](http://localhost:9522/metrics)
+Visit metrics in [localhost:9525/metrics](http://localhost:9525/metrics)
 
 ## Docker Image
 
@@ -81,7 +81,7 @@ docker pull aylei/aliyun-exporter:0.2.1
 
 To run the container, external configuration file is required:
 ```bash
-docker run -p 9522:9522 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.2.1 -c $(pwd)/aliyun-exporter.yml
+docker run -p 9525:9525 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.2.1 -c $(pwd)/aliyun-exporter.yml
 ```
 
 ## Configuration
@@ -158,15 +158,15 @@ metrics:
 启动 Exporter
 
 ```bash
-> aliyun-exporter -p 9522 -c aliyun-exporter.yml
+> aliyun-exporter -p 9525 -c aliyun-exporter.yml
 ```
 
-访问 [localhost:9522/metrics](http://localhost:9522/metrics) 查看指标抓取是否成功
+访问 [localhost:9525/metrics](http://localhost:9525/metrics) 查看指标抓取是否成功
 
 ## Docker 镜像
 
 ```bash
-docker run -p 9522:9522 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.2.1 -c $(pwd)/aliyun-exporter.yml
+docker run -p 9525:9525 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.2.1 -c $(pwd)/aliyun-exporter.yml
 ```
 
 ## Grafana 看板
