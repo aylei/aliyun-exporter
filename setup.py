@@ -31,6 +31,7 @@ setup(
         'aliyun-python-sdk-core-v3',
         'pyyaml',
         'ratelimiter',
+        'flask',
     ],
     entry_points={
         'console_scripts': [

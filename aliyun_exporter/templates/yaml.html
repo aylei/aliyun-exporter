@@ -1,0 +1,9 @@
+<!doctype html>
+<pre>
+metrics:
+  {{ project }}:
+{%- for metric in metrics %}
+  - name: {{ metric['Metric'] | formatmetric }}
+    period: {{ metric['Periods'] | formatperiod}}
+{%- endfor -%}
+</pre>

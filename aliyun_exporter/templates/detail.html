@@ -1,0 +1,23 @@
+<!doctype html>
+<title>aliyun-exporter</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<div>
+    <h3>Project: {{ project }}</h3>
+    <h3><a href="/yaml/{{ project }}">YAML Format</a></h3>
+    <table style="width: 100%;">
+        <tr>
+            <th>Metric</th>
+            <th>Dimensions</th>
+            <th>Periods</th>
+            <th>Unit</th>
+        </tr>
+        {% for metric in metrics %}
+            <tr>
+                <td>{{ metric['Metric'] }}</td>
+                <td>{{ metric['Dimensions'] }}</td>
+                <td>{{ metric['Periods'] }}</td>
+                <td>{{ metric['Unit'] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

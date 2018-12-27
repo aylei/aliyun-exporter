@@ -1,0 +1,19 @@
+<!doctype html>
+<title>aliyun-exporter</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<div>
+    <table style="width: 100%;">
+        <tr>
+            <th>Project</th>
+            <th>Description</th>
+            <th>Labels</th>
+        </tr>
+    {% for project in projects %}
+        <tr>
+            <td><a href="/projects/{{ project['Project'] }}">{{ project['Project'] }}</a></td>
+            <td>{{ project['Description'] }}</td>
+            <td>{{ project['Labels'] }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>

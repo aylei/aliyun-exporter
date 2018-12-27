@@ -1,8 +1,9 @@
 # Prometheus Exporter for Alibaba Cloud
 
 ![license](https://img.shields.io/hexpm/l/plug.svg)
-![pypi](https://img.shields.io/pypi/v/aliyun-exporter.svg)
-![docker](https://img.shields.io/docker/pulls/aylei/aliyun-exporter.svg)
+[![pypi](https://img.shields.io/pypi/v/aliyun-exporter.svg)](https://pypi.org/project/aliyun-exporter/)
+[![docker](https://img.shields.io/docker/pulls/aylei/aliyun-exporter.svg)](https://cloud.docker.com/u/aylei/repository/docker/aylei/aliyun-exporter)
+[![Build Status](https://travis-ci.org/aylei/aliyun-exporter.svg?branch=master)](https://travis-ci.org/aylei/aliyun-exporter)
 
 [中文](#中文)
 
@@ -11,6 +12,7 @@
 * [Usage](#usage)
 * [Docker Image](#docker-image)
 * [Configuration](#configuration)
+* [Metrics Meta](#metrics-meta)
 * [Scale and HA Setup](#scale-and-ha-setup)
 * [Contribute](#contribute)
 
@@ -20,6 +22,13 @@ This Prometheus exporter collects metrics from the [CloudMonitor API](https://pa
 * leverage the power of PromQL, Alertmanager and Grafana(see [Screenshots](#)).
 * analyze metrics however you want.
 * save money. Api invocation is far cheaper than other services provided by CloudMonitor.
+
+## Features
+
+* Highly customizable: easy to config what to scrape and how to scrape, see [configuration](#configuration)
+* Rate limit: support rate limit config to avoid api banning
+* Metrics meta: provide a simple site to host metrics meta of CloudMonitor, help you finding your interested metric quickly
+* Easy to use: pre-built docker image and grafana dashboards can help building your monitoring within 5 minutes
 
 ## Screenshots
 
@@ -103,11 +112,21 @@ metrics: # required, metrics specifications
 
 Notes:
 
-* Find your target metrics in the [CloudMonitor Documentation](https://partners-intl.aliyun.com/help/doc-detail/28619.htm).
+* Find your target metrics using [Metrics Meta](#metrics-meta)
 * CloudMonitor API has an rate limit, tuning the `rate_limit` configuration if the requests are rejected.
 * CloudMonitor API also has an monthly quota for invocations (AFAIK, 5,000,000 invocations / month for free). Plan your usage in advance. 
 
 > Given that you have 50 metrics to scrape with 60s scrape interval, about 2,160,000 requests will be sent by the exporter for 30 days.
+
+## Metrics Meta
+
+`aliyun-exporter` shipped with a simple site hosting the metrics meta from the CloudMonitor API. You can visit the metric meta in [localhost:9525](http://localhost:9525) after launching the exporter.
+
+* `host:port` will host all the available monitor projects
+* `host:port/projects/{project}` will host the metrics meta of a certain project
+* `host:port/yaml/{project}` will host a config YAML of the project's metrics
+
+you can easily navigate in this pages by hyperlink.
 
 ## Telemetry
 

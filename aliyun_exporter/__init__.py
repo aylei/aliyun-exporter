@@ -1,14 +1,16 @@
 import argparse
+from wsgiref.simple_server import make_server
+
 import yaml
 import logging
 import signal
 import sys
 import time
 
-from prometheus_client import start_http_server
 from prometheus_client.core import REGISTRY
 
 from aliyun_exporter.collector import AliyunCollector, CollectorConfig
+from aliyun_exporter.web import create_app
 
 
 def shutdown():
@@ -36,8 +38,11 @@ def main():
     collector = AliyunCollector(collector_config)
     REGISTRY.register(collector)
 
+    app = create_app(collector_config)
+
     logging.info("Start exporter, listen on {}".format(args.port))
-    start_http_server(args.port)
+    httpd = make_server('', args.port, app)
+    httpd.serve_forever()
 
     try:
         while True:
