@@ -1,0 +1,11 @@
+credential:
+  access_key_id: <YOUR_ACCESS_KEY_ID>
+  access_key_secret: <YOUR_ACCESS_KEY_SECRET>
+  region_id: <REGION_ID>
+
+metrics:
+  acs_cdn:
+  - name: QPS
+  acs_mongodb:
+  - name: CPUUtilization
+    period: 300
