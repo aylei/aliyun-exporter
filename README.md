@@ -85,12 +85,12 @@ Visit metrics in [localhost:9525/metrics](http://localhost:9525/metrics)
 
 Install
 ```bash
-docker pull aylei/aliyun-exporter:0.2.1
+docker pull aylei/aliyun-exporter:0.2.2
 ```
 
 To run the container, external configuration file is required:
 ```bash
-docker run -p 9525:9525 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.2.1 -c $(pwd)/aliyun-exporter.yml
+docker run -p 9525:9525 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.2.2 -c $(pwd)/aliyun-exporter.yml
 ```
 
 ## Configuration
@@ -185,7 +185,7 @@ metrics:
 ## Docker 镜像
 
 ```bash
-docker run -p 9525:9525 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.2.1 -c $(pwd)/aliyun-exporter.yml
+docker run -p 9525:9525 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.2.2 -c $(pwd)/aliyun-exporter.yml
 ```
 
 ## Grafana 看板
