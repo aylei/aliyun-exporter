@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='aliyun-exporter',
-    version='0.2.1',
+    version='0.2.2',
     description='Alibaba Cloud CloudMonitor Prometheus exporter',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -25,6 +25,9 @@ setup(
     ],
     keywords='monitoring prometheus exporter aliyun alibaba cloudmonitor',
     packages=find_packages(exclude=['tests']),
+    include_package_data=True,
+    zip_safe=False,
+    package_data={'aliyun_exporter': ['static/*','templates/*']},
     install_requires=[
         'prometheus-client',
         'aliyun-python-sdk-cms',

@@ -40,8 +40,8 @@ def main():
 
     app = create_app(collector_config)
 
-    logging.info("Start exporter, listen on {}".format(args.port))
-    httpd = make_server('', args.port, app)
+    logging.info("Start exporter, listen on {}".format(int(args.port)))
+    httpd = make_server('', int(args.port), app)
     httpd.serve_forever()
 
     try:
