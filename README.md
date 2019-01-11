@@ -1,11 +1,12 @@
 # Prometheus Exporter for Alibaba Cloud
 
 ![license](https://img.shields.io/hexpm/l/plug.svg)
+[![help wanted](https://img.shields.io/github/issues/aylei/aliyun-exporter/help%20wanted.svg)](https://github.com/aylei/aliyun-exporter/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 [![pypi](https://img.shields.io/pypi/v/aliyun-exporter.svg)](https://pypi.org/project/aliyun-exporter/)
 [![docker](https://img.shields.io/docker/pulls/aylei/aliyun-exporter.svg)](https://cloud.docker.com/u/aylei/repository/docker/aylei/aliyun-exporter)
 [![Build Status](https://travis-ci.org/aylei/aliyun-exporter.svg?branch=master)](https://travis-ci.org/aylei/aliyun-exporter)
 
-[中文](#中文)
+[中文](./README-cn.md)
 
 * [Screenshots](#screenshots)
 * [Installation](#installation)
@@ -28,6 +29,7 @@ This Prometheus exporter collects metrics from the [CloudMonitor API](https://pa
 * Highly customizable: easy to config what to scrape and how to scrape, see [configuration](#configuration)
 * Rate limit: support rate limit config to avoid api banning
 * Metrics meta: provide a simple site to host metrics meta of CloudMonitor, help you finding your interested metric quickly
+* Info metric: out-of-box information metrics for each cloud resource, rich context for diagnosing
 * Easy to use: pre-built docker image and grafana dashboards can help building your monitoring within 5 minutes
 
 ## Screenshots
@@ -144,7 +146,9 @@ For HA setup, simply duplicate your deployments: 2 * prometheus, and 2 * exporte
 
 ## Contribute
 
-Feel free to open issues and pull requests. Besides, I am a golang and java programmer, this project is a practice for python. Let me know if you have any advice for my code style or logic. Any feedback will be highly appreciated!
+Feel free to open issues and pull requests, any feedback will be highly appreciated!
+
+Please check the [`help wanted`](https://github.com/aylei/aliyun-exporter/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) label to find issues that are good for getting started.
 
 # 中文
 
@@ -230,3 +234,7 @@ metrics: # 必填, 目标指标配置
 HA 和 Prometheus 本身的 HA 方案一样，就是搭完全相同的两套监控。每套部署一台 Prometheus 加上对应的 Exporter。或者直接交给底下的 PaaS 设施来做 Standby。
 
 > 部署两套会导致请求量会翻倍，要注意每月 API 调用量
+
+## 贡献
+
+我们欢迎 PR 或 issue 等任何形式的贡献! 你也可以在 [`help wanted`](https://github.com/aylei/aliyun-exporter/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) label 下找到适合开始贡献的 issue!

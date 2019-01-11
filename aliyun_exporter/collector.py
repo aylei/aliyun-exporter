@@ -9,6 +9,8 @@ from aliyunsdkcore.client import AcsClient
 from aliyunsdkcms.request.v20180308 import QueryMetricLastRequest
 from ratelimiter import RateLimiter
 
+from aliyun_exporter.info_provider import InfoProvider
+
 requestSummary = Summary('cloudmonitor_request_latency_seconds', 'CloudMonitor request latency', ['project'])
 requestFailedSummary = Summary('cloudmonitor_failed_request_latency_seconds', 'CloudMonitor failed request latency', ['project'])
 
@@ -18,6 +20,7 @@ class CollectorConfig(object):
                  rate_limit=10,
                  credential=None,
                  metrics=None,
+                 info_metrics=None,
                  ):
         # if metrics is None:
         # raise Exception('Metrics config must be set.')
@@ -29,11 +32,12 @@ class CollectorConfig(object):
         self.metrics = metrics
         self.rate_limit = rate_limit
         self.pool_size = pool_size
-
+        self.info_metrics = info_metrics
 
 class AliyunCollector(object):
     def __init__(self, config: CollectorConfig):
         self.metrics = config.metrics
+        self.info_metrics = config.info_metrics
         self.client = AcsClient(
             ak=config.credential['access_key_id'],
             secret=config.credential['access_key_secret'],
@@ -41,6 +45,7 @@ class AliyunCollector(object):
         )
         self.pool = ThreadPoolExecutor(max_workers=config.pool_size)
         self.rateLimiter = RateLimiter(max_calls=config.rate_limit)
+        self.info_provider = InfoProvider(self.client)
 
     def query_metric(self, project: str, metric: str, period: int):
         with self.rateLimiter:
@@ -63,7 +68,6 @@ class AliyunCollector(object):
 
     def parse_label_keys(self, point):
         return [k for k in point if k not in ['timestamp', 'Maximum', 'Minimum', 'Average']]
-
 
     def format_metric_name(self, project, name):
         return 'aliyun_{}_{}'.format(project, name)
@@ -102,6 +106,9 @@ class AliyunCollector(object):
         for project in self.metrics:
             for metric in self.metrics[project]:
                 yield from self.metric_generator(project, metric)
+        if self.info_metrics != None:
+            for resource in self.info_metrics:
+                yield self.info_provider.get_metrics(resource)
 
 
 def metric_up_gauge(resource: str, succeeded=True):

@@ -9,3 +9,5 @@ metrics:
   acs_mongodb:
   - name: CPUUtilization
     period: 300
+
+info_metrics:
