@@ -1,0 +1,23 @@
+credential:
+  access_key_id: <YOUR_ACCESS_KEY_ID>
+  access_key_secret: <YOUR_ACCESS_KEY_SECRET>
+  region_id: <REGION_ID>
+
+metrics:
+  rds_performance:
+  - name: MySQL_QPSTPS
+  - name: MySQL_NetworkTraffic
+  - name: MySQL_Sessions
+  - name: MySQL_InnoDBBufferRatio
+  - name: MySQL_InnoDBDataReadWriten
+  - name: MySQL_InnoDBLogRequests
+  - name: MySQL_InnoDBLogWrites
+  - name: MySQL_TempDiskTableCreates
+  - name: MySQL_MyISAMKeyBufferRatio
+  - name: MySQL_MyISAMKeyReadWrites
+  - name: MySQL_COMDML
+  - name: MySQL_RowDML
+  - name: MySQL_MemCpuUsage
+  - name: MySQL_IOPS
+  - name: MySQL_DetailedSpaceUsage
+  - name: MySQL_CPS
