@@ -120,6 +120,18 @@ Notes:
 
 > Given that you have 50 metrics to scrape with 60s scrape interval, about 2,160,000 requests will be sent by the exporter for 30 days.
 
+## Special Project
+
+Some metrics are not included in the Cloud Monitor API. For these metrics, we keep the configuration abstraction consistent by defining special projects.
+
+Special Projects:
+
+* `rds_performance`: RDS performance metrics, available metric names: [Performance parameter table](https://www.alibabacloud.com/help/doc-detail/26316.htm?spm=a2c63.p38356.b99.361.694917e6Rtuu9i)
+
+> An example configuration file of special project is provided as `special-projects.yml`
+
+**Note**: special projects invokes different API with ordinary metrics, so it will not consume your Cloud Monitor API invocation quota. But the API of special projects could be slow, so it is recommended to separate special projects into a standalone exporter instance.
+
 ## Metrics Meta
 
 `aliyun-exporter` shipped with a simple site hosting the metrics meta from the CloudMonitor API. You can visit the metric meta in [localhost:9525](http://localhost:9525) after launching the exporter.
@@ -220,6 +232,14 @@ metrics: # 必填, 目标指标配置
 * 云监控 API 每月调用量前 500 万次免费，需要计划好用量
 
 > 假如配置了 50 个指标，再配置 Prometheus 60秒 抓取一次 Exporter，那么 30 天大约会用掉 2,160,000 次请求
+
+## 特殊的 Project
+
+有一些指标没有在云监控 API 中暴露, 为了保持配置的一致性, 我们定义了一些特殊 Project 来配置这些指标.
+
+所有的特殊 Project:
+
+* `rds_performance`: RDS 的详细性能数据, 可选的指标名可以在这里找到: [性能参数表](https://help.aliyun.com/document_detail/26316.html?spm=a2c4g.11186623.4.3.764b2c01QbzUdY)
 
 ## 自监控
 

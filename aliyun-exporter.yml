@@ -11,3 +11,6 @@ metrics:
     period: 300
 
 info_metrics:
+  - ecs
+  - rds
+  - redis
