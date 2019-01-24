@@ -1,0 +1,350 @@
+groups:
+- name: slb
+  rules:
+  - alert: slb_5xx_percent:warning
+    expr: |-
+      sum(aliyun_acs_slb_dashboard_StatusCode5xx) by (vip, port) /
+      sum(aliyun_acs_slb_dashboard_Qps) by (vip, port) > 0.01
+    labels:
+      severity: 2
+    for: 5m
+    annotations:
+      summary: 'SLB {{ $labels.vip }}:{{ $labels.port }} 5xx percent > 1%'
+  - alert: slb_5xx_percent:high
+    expr: |-
+      sum(aliyun_acs_slb_dashboard_StatusCode5xx) by (vip, port) /
+      sum(aliyun_acs_slb_dashboard_Qps) by (vip, port) > 0.05
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'SLB {{ $labels.vip }}:{{ $labels.port }} 5xx percent > 5%'
+  - alert: slb_5xx_percent:critical
+    expr: |-
+      sum(aliyun_acs_slb_dashboard_StatusCode5xx) by (vip, port) /
+      sum(aliyun_acs_slb_dashboard_Qps) by (vip, port) > 0.1
+    labels:
+      severity: 0
+    for: 5m
+    annotations:
+      summary: 'SLB {{ $labels.vip }}:{{ $labels.port }} 5xx percent > 10%'
+  - alert: slb_response_time:high
+    expr: |-
+      avg(aliyun_acs_slb_dashboard_Rt) by (vip, port) > 200
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'SLB {{ $labels.vip }}:{{ $labels.port }} RT > 200ms'
+  - alert: slb_response_time:critical
+    expr: |-
+      avg(aliyun_acs_slb_dashboard_Rt) by (vip, port) > 500
+    labels:
+      severity: 0
+    for: 5m
+    annotations:
+      summary: 'SLB {{ $labels.vip }}:{{ $labels.port }} RT > 500ms'
+  - alert: slb_tx_traffic_drop_percent:critical
+    expr: |-
+      sum(aliyun_acs_slb_dashboard_DropTrafficTX) by (vip, port) /
+      sum(aliyun_acs_slb_dashboard_TrafficTXNew) by (vip, port) > 0.001
+    labels:
+      severity: 0
+    for: 5m
+    annotations:
+      summary: 'SLB {{ $labels.vip }}:{{ $labels.port }} tx traffic drop percent > 0.1%'
+  - alert: slb_rx_traffic_drop_percent:critical
+    expr: |-
+      sum(aliyun_acs_slb_dashboard_DropTrafficRX) by (vip, port) /
+      sum(aliyun_acs_slb_dashboard_TrafficRXNew) by (vip, port) > 0.001
+    labels:
+      severity: 0
+    for: 5m
+    annotations:
+      summary: 'SLB {{ $labels.vip }}:{{ $labels.port }} rx traffic drop percent > 0.1%'
+
+- name: ecs
+  rules:
+  - alert: ecs_cpu_pressure:warning
+    expr: |-
+      (aliyun_acs_ecs_dashboard_CPUUtilization > 80)
+      * on (instanceId) group_left(VpcAttributes,HostName,InnerIpAddress)
+      label_replace(aliyun_meta_ecs_info,"instanceId","$1","InstanceId","(.*)")
+    labels:
+      severity: 2
+    for: 5m
+    annotations:
+      summary: 'ECS {{ $labels.HostName }} cpu usage > 80%'
+  - alert: ecs_cpu_pressure:high
+    expr: |-
+      (aliyun_acs_ecs_dashboard_CPUUtilization > 95)
+      * on (instanceId) group_left(VpcAttributes,HostName,InnerIpAddress)
+      label_replace(aliyun_meta_ecs_info,"instanceId","$1","InstanceId","(.*)")
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'ECS {{ $labels.HostName }} cpu usage > 95%'
+  - alert: ecs_memory_pressure:warning
+    expr: |-
+      (aliyun_acs_ecs_dashboard_memory_usedutilization > 80)
+      * on (instanceId) group_left(VpcAttributes,HostName,InnerIpAddress)
+      label_replace(aliyun_meta_ecs_info,"instanceId","$1","InstanceId","(.*)")
+    labels:
+      severity: 2
+    for: 5m
+    annotations:
+      summary: 'ECS {{ $labels.HostName }} memory usage > 80%'
+  - alert: ecs_memory_pressure:high
+    expr: |-
+      (aliyun_acs_ecs_dashboard_memory_usedutilization > 95)
+      * on (instanceId) group_left(VpcAttributes,HostName,InnerIpAddress)
+      label_replace(aliyun_meta_ecs_info,"instanceId","$1","InstanceId","(.*)")
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'ECS {{ $labels.HostName }} memory usage > 95%'
+  - alert: ecs_load_avg:warning
+    expr: |-
+      (aliyun_acs_ecs_dashboard_load_5m > 10)
+      * on (instanceId) group_left(VpcAttributes,HostName,InnerIpAddress)
+      label_replace(aliyun_meta_ecs_info,"instanceId","$1","InstanceId","(.*)")
+    labels:
+      severity: 2
+    for: 5m
+    annotations:
+      summary: 'ECS {{ $labels.HostName }} loadAvg5m > 10'
+  - alert: ecs_load_avg:high
+    expr: |-
+      (aliyun_acs_ecs_dashboard_load_5m > 20)
+      * on (instanceId) group_left(VpcAttributes,HostName,InnerIpAddress)
+      label_replace(aliyun_meta_ecs_info,"instanceId","$1","InstanceId","(.*)")
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'ECS {{ $labels.HostName }} loadAvg5m > 20'
+  - alert: ecs_disk_pressure:high
+    expr: |-
+      (aliyun_acs_ecs_dashboard_diskusage_utilization > 90)
+      * on (instanceId) group_left(VpcAttributes,HostName,InnerIpAddress)
+      label_replace(aliyun_meta_ecs_info,"instanceId","$1","InstanceId","(.*)")
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'ECS {{ $labels.HostName }} disk usage > 80%'
+  - alert: ecs_disk_pressure:critical
+    expr: |-
+      (aliyun_acs_ecs_dashboard_diskusage_utilization > 95)
+      * on (instanceId) group_left(VpcAttributes,HostName,InnerIpAddress)
+      label_replace(aliyun_meta_ecs_info,"instanceId","$1","InstanceId","(.*)")
+    labels:
+      severity: 0
+    for: 5m
+    annotations:
+      summary: 'ECS {{ $labels.HostName }} disk usage > 95%'
+  - alert: ecs_too_many_connections:warning
+    expr: |-
+      (aliyun_acs_ecs_dashboard_tcpconnection{state="TCP_TOTAL"} > 1000)
+      * on (instanceId) group_left(VpcAttributes,HostName,InnerIpAddress)
+      label_replace(aliyun_meta_ecs_info,"instanceId","$1","InstanceId","(.*)")
+    labels:
+      severity: 2
+    for: 5m
+    annotations:
+      summary: 'ECS {{ $labels.HostName }} tcp_total > 1000'
+  - alert: ecs_too_many_connections:high
+    expr: |-
+      (aliyun_acs_ecs_dashboard_tcpconnection{state="TCP_TOTAL"} > 2000)
+      * on (instanceId) group_left(VpcAttributes,HostName,InnerIpAddress)
+      label_replace(aliyun_meta_ecs_info,"instanceId","$1","InstanceId","(.*)")
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'ECS {{ $labels.HostName }} tcp_total > 2000'
+
+- name: rds
+  rules:
+  - alert: rds_cpu_pressure:high
+    expr: |-
+      sum(aliyun_acs_rds_dashboard_CpuUsage
+        * on (instanceId) group_left(DBInstanceDescription,ZoneId)
+        label_replace(aliyun_meta_rds_info, "instanceId", "$1", "DBInstanceId", "(.*)"))
+      without (instance, userId, job) > 85
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'RDS {{ $labels.DBInstanceDescription }} under high cpu pressure > 85%'
+  - alert: rds_cpu_pressure:critical
+    expr: |-
+      sum(aliyun_acs_rds_dashboard_CpuUsage
+        * on (instanceId) group_left(DBInstanceDescription,ZoneId)
+        label_replace(aliyun_meta_rds_info, "instanceId", "$1", "DBInstanceId", "(.*)"))
+      without (instance, userId, job) > 95
+    labels:
+      severity: 0
+    for: 5m
+    annotations:
+      summary: 'RDS {{ $labels.DBInstanceDescription }} under critical cpu pressure > 95%'
+  - alert: rds_memory_pressure:high
+    expr: |-
+      sum(aliyun_acs_rds_dashboard_MemoryUsage
+        * on (instanceId) group_left(DBInstanceDescription,ZoneId)
+        label_replace(aliyun_meta_rds_info, "instanceId", "$1", "DBInstanceId", "(.*)"))
+      without (instance, userId, job) > 85
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'RDS {{ $labels.DBInstanceDescription }} under high memory pressure > 85%'
+  - alert: rds_memory_pressure:critical
+    expr: |-
+      sum(aliyun_acs_rds_dashboard_MemoryUsage
+        * on (instanceId) group_left(DBInstanceDescription,ZoneId)
+        label_replace(aliyun_meta_rds_info, "instanceId", "$1", "DBInstanceId", "(.*)"))
+      without (instance, userId, job) > 95
+    labels:
+      severity: 0
+    for: 5m
+    annotations:
+      summary: 'RDS {{ $labels.DBInstanceDescription }} under critical memory pressure > 95%'
+  - alert: rds_iops_pressure:high
+    expr: |-
+      sum(aliyun_acs_rds_dashboard_IOPSUsage
+        * on (instanceId) group_left(DBInstanceDescription,ZoneId)
+        label_replace(aliyun_meta_rds_info, "instanceId", "$1", "DBInstanceId", "(.*)"))
+      without (instance, userId, job) > 80
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'RDS {{ $labels.DBInstanceDescription }} under high iops pressure > 80%'
+  - alert: rds_iops_pressure:critical
+    expr: |-
+      sum(aliyun_acs_rds_dashboard_IOPSUsage
+        * on (instanceId) group_left(DBInstanceDescription,ZoneId)
+        label_replace(aliyun_meta_rds_info, "instanceId", "$1", "DBInstanceId", "(.*)"))
+      without (instance, userId, job) > 90
+    labels:
+      severity: 0
+    for: 5m
+    annotations:
+      summary: 'RDS {{ $labels.DBInstanceDescription }} under high iops pressure > 90%'
+  - alert: rds_disk_space_exhausted:warning
+    expr: |-
+      sum(aliyun_acs_rds_dashboard_DiskUsage
+        * on (instanceId) group_left(DBInstanceDescription,ZoneId)
+        label_replace(aliyun_meta_rds_info, "instanceId", "$1", "DBInstanceId", "(.*)"))
+      without (instance, userId, job) > 85
+    labels:
+      severity: 2
+    for: 5m
+    annotations:
+      summary: 'RDS {{ $labels.DBInstanceDescription }} disk space under pressure > 85%'
+  - alert: rds_disk_space_exhausted:critical
+    expr: |-
+      sum(aliyun_acs_rds_dashboard_DiskUsage
+        * on (instanceId) group_left(DBInstanceDescription,ZoneId)
+        label_replace(aliyun_meta_rds_info, "instanceId", "$1", "DBInstanceId", "(.*)"))
+      without (instance, userId, job) > 95
+    labels:
+      severity: 0
+    for: 5m
+    annotations:
+      summary: 'RDS {{ $labels.DBInstanceDescription }} disk space will be exhausted soon > 95%'
+  - alert: rds_connection_pressure:high
+    expr: |-
+      sum(aliyun_acs_rds_dashboard_ConnectionUsage
+        * on (instanceId) group_left(DBInstanceDescription,ZoneId)
+        label_replace(aliyun_meta_rds_info, "instanceId", "$1", "DBInstanceId", "(.*)"))
+      without (instance, userId, job) > 85
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'RDS {{ $labels.DBInstanceDescription }} connection usage > 85%'
+  - alert: rds_connection_pressure:critical
+    expr: |-
+      sum(aliyun_acs_rds_dashboard_ConnectionUsage
+        * on (instanceId) group_left(DBInstanceDescription,ZoneId)
+        label_replace(aliyun_meta_rds_info, "instanceId", "$1", "DBInstanceId", "(.*)"))
+      without (instance, userId, job) > 95
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'RDS {{ $labels.DBInstanceDescription }} connection usage > 95%'
+
+- name: redis
+  rules:
+  - alert: redis_cpu_pressure:high
+    expr: |-
+      sum(aliyun_acs_kvstore_CpuUsage
+          * on (instanceId) group_left(PrivateIp,InstanceName)
+          label_replace(aliyun_meta_redis_info, "instanceId", "$1", "UserName", "(.*)"))
+      without (instance, userId, job) > 85
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'Redis {{ $labels.InstanceName }} under high cpu pressure > 85%'
+  - alert: redis_cpu_pressure:critical
+    expr: |-
+      sum(aliyun_acs_kvstore_CpuUsage
+          * on (instanceId) group_left(PrivateIp,InstanceName)
+          label_replace(aliyun_meta_redis_info, "instanceId", "$1", "UserName", "(.*)"))
+      without (instance, userId, job) > 95
+    labels:
+      severity: 0
+    for: 5m
+    annotations:
+      summary: 'Redis {{ $labels.InstanceName }} under high cpu pressure > 95%'
+  - alert: redis_memory_pressure:high
+    expr: |-
+      sum(aliyun_acs_kvstore_MemoryUsage
+          * on (instanceId) group_left(PrivateIp,InstanceName)
+          label_replace(aliyun_meta_redis_info, "instanceId", "$1", "UserName", "(.*)"))
+      without (instance, userId, job) > 85
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'Redis {{ $labels.InstanceName }} memory usage > 85%'
+  - alert: redis_memory_pressure:critical
+    expr: |-
+      sum(aliyun_acs_kvstore_MemoryUsage
+          * on (instanceId) group_left(PrivateIp,InstanceName)
+          label_replace(aliyun_meta_redis_info, "instanceId", "$1", "UserName", "(.*)"))
+      without (instance, userId, job) > 95
+    labels:
+      severity: 0
+    for: 5m
+    annotations:
+      summary: 'Redis {{ $labels.InstanceName }} memory usage > 95%'
+  - alert: redis_connection_pressure:high
+    expr: |-
+      sum(aliyun_acs_kvstore_ConnectionUsage
+          * on (instanceId) group_left(PrivateIp,InstanceName)
+          label_replace(aliyun_meta_redis_info, "instanceId", "$1", "UserName", "(.*)"))
+      without (instance, userId, job) > 85
+    labels:
+      severity: 1
+    for: 5m
+    annotations:
+      summary: 'Redis {{ $labels.InstanceName }} connection usage > 85%'
+  - alert: redis_connection_pressure:critical
+    expr: |-
+      sum(aliyun_acs_kvstore_ConnectionUsage
+          * on (instanceId) group_left(PrivateIp,InstanceName)
+          label_replace(aliyun_meta_redis_info, "instanceId", "$1", "UserName", "(.*)"))
+      without (instance, userId, job) > 95
+    labels:
+      severity: 0
+    for: 5m
+    annotations:
+      summary: 'Redis {{ $labels.InstanceName }} connection usage > 95%'
+

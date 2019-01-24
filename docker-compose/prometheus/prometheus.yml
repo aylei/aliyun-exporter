@@ -1,0 +1,31 @@
+global:
+  scrape_interval: 30s
+  evaluation_interval: 30s
+
+rule_files:
+- 'rules.yml'
+
+alerting:
+  alertmanagers:
+  - scheme: http
+    static_configs:
+    - targets:
+      - "alertmanager:9093"
+
+scrape_configs:
+
+- job_name: 'prometheus'
+  scrape_interval: 5s
+  static_configs:
+  - targets: ['localhost:9090']
+
+- job_name: 'alertmanager'
+  scrape_interval: 15s
+  static_configs:
+  - targets: ['alertmanager:9093']
+
+- job_name: 'aliyun-exporter'
+  scrape_interval: 30s
+  scrape_timeout: 30s
+  static_configs:
+  - targets: ['aliyun-exporter:9525']

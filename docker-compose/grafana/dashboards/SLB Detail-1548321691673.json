@@ -1,0 +1,1394 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1548321644593,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 11,
+      "panels": [],
+      "title": "Traffic Overview",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_TrafficRXNew{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "RX",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_TrafficTXNew{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "TX",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Traffic",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(aliyun_acs_slb_dashboard_Rt{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "SLB",
+          "refId": "A"
+        },
+        {
+          "expr": "avg(aliyun_acs_slb_dashboard_UpstreamRt{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Upstream",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "RT",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 6
+      },
+      "id": 3,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_Qps{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "QPS",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 6
+      },
+      "id": 12,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "5XX",
+          "color": "#bf1b00",
+          "fill": 6
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_StatusCode4xx{vip=\"$vip\",port=~\"$port\"}) / sum(aliyun_acs_slb_dashboard_Qps{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "4XX",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_StatusCode5xx{vip=\"$vip\",port=~\"$port\"}) / sum(aliyun_acs_slb_dashboard_Qps{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "5XX",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Error Percent",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 11
+      },
+      "id": 5,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "5XX",
+          "color": "#bf1b00",
+          "fill": 7
+        },
+        {
+          "alias": "3XX",
+          "color": "#6ed0e0"
+        },
+        {
+          "alias": "4XX",
+          "color": "#cca300",
+          "fill": 4
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_StatusCode2xx{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "2XX",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_StatusCode3xx{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "3XX",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_StatusCode4xx{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "4XX",
+          "refId": "C"
+        },
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_StatusCode5xx{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "5XX",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "StatusCode",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 11
+      },
+      "id": 13,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_DropTrafficTX{vip=\"$vip\",port=~\"$port\"}) / sum(aliyun_acs_slb_dashboard_TrafficTXNew{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "5XX",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_DropTrafficRX{vip=\"$vip\",port=~\"$port\"}) / sum(aliyun_acs_slb_dashboard_TrafficRXNew{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "4XX",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Traffic Drop Percent",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 7,
+      "panels": [],
+      "title": "Connections",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 17
+      },
+      "id": 16,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Unhealthy",
+          "color": "#bf1b00",
+          "fill": 6
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_ActiveConnection{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Active",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_MaxConnection{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Max",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Connections",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 17
+      },
+      "id": 17,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Unhealthy",
+          "color": "#bf1b00",
+          "fill": 6
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_DropConnection{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Dropped",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Drop Connections",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "id": 9,
+      "panels": [],
+      "title": "Upstream",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 23
+      },
+      "id": 14,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Unhealthy",
+          "color": "#bf1b00",
+          "fill": 6
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_HeathyServerCount{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Healthy",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_UnhealthyServerCount{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Unhealthy",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Upstream Servers",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 23
+      },
+      "id": 15,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Unhealthy",
+          "color": "#bf1b00",
+          "fill": 6
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_UpstreamCode4xx{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "4XX",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(aliyun_acs_slb_dashboard_UpstreamCode5xx{vip=\"$vip\",port=~\"$port\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "5XX",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Upstream Error Rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [
+    "SLB",
+    "detail"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "223.6.255.140",
+          "value": "223.6.255.140"
+        },
+        "datasource": "Prometheus",
+        "definition": "label_values(aliyun_acs_slb_dashboard_MaxConnection, vip)",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "vip",
+        "options": [
+          {
+            "selected": true,
+            "text": "223.6.255.140",
+            "value": "223.6.255.140"
+          },
+          {
+            "selected": false,
+            "text": "120.55.148.50",
+            "value": "120.55.148.50"
+          },
+          {
+            "selected": false,
+            "text": "100.98.153.0",
+            "value": "100.98.153.0"
+          },
+          {
+            "selected": false,
+            "text": "120.55.248.180",
+            "value": "120.55.248.180"
+          },
+          {
+            "selected": false,
+            "text": "100.98.152.150",
+            "value": "100.98.152.150"
+          },
+          {
+            "selected": false,
+            "text": "120.55.251.254",
+            "value": "120.55.251.254"
+          },
+          {
+            "selected": false,
+            "text": "120.55.104.56",
+            "value": "120.55.104.56"
+          },
+          {
+            "selected": false,
+            "text": "100.98.210.121",
+            "value": "100.98.210.121"
+          },
+          {
+            "selected": false,
+            "text": "47.252.50.11",
+            "value": "47.252.50.11"
+          },
+          {
+            "selected": false,
+            "text": "10.111.211.160",
+            "value": "10.111.211.160"
+          },
+          {
+            "selected": false,
+            "text": "10.111.211.175",
+            "value": "10.111.211.175"
+          },
+          {
+            "selected": false,
+            "text": "118.178.155.40",
+            "value": "118.178.155.40"
+          },
+          {
+            "selected": false,
+            "text": "10.111.7.213",
+            "value": "10.111.7.213"
+          },
+          {
+            "selected": false,
+            "text": "120.55.24.53",
+            "value": "120.55.24.53"
+          },
+          {
+            "selected": false,
+            "text": "10.111.8.54",
+            "value": "10.111.8.54"
+          },
+          {
+            "selected": false,
+            "text": "10.142.31.177",
+            "value": "10.142.31.177"
+          },
+          {
+            "selected": false,
+            "text": "10.111.6.209",
+            "value": "10.111.6.209"
+          },
+          {
+            "selected": false,
+            "text": "47.97.243.173",
+            "value": "47.97.243.173"
+          },
+          {
+            "selected": false,
+            "text": "120.55.139.203",
+            "value": "120.55.139.203"
+          },
+          {
+            "selected": false,
+            "text": "10.111.5.129",
+            "value": "10.111.5.129"
+          },
+          {
+            "selected": false,
+            "text": "10.140.85.146",
+            "value": "10.140.85.146"
+          },
+          {
+            "selected": false,
+            "text": "10.111.5.217",
+            "value": "10.111.5.217"
+          },
+          {
+            "selected": false,
+            "text": "10.111.2.223",
+            "value": "10.111.2.223"
+          },
+          {
+            "selected": false,
+            "text": "10.111.6.1",
+            "value": "10.111.6.1"
+          },
+          {
+            "selected": false,
+            "text": "10.111.7.209",
+            "value": "10.111.7.209"
+          },
+          {
+            "selected": false,
+            "text": "120.55.23.74",
+            "value": "120.55.23.74"
+          },
+          {
+            "selected": false,
+            "text": "10.111.6.252",
+            "value": "10.111.6.252"
+          },
+          {
+            "selected": false,
+            "text": "10.111.6.251",
+            "value": "10.111.6.251"
+          },
+          {
+            "selected": false,
+            "text": "10.111.9.49",
+            "value": "10.111.9.49"
+          },
+          {
+            "selected": false,
+            "text": "10.111.6.32",
+            "value": "10.111.6.32"
+          },
+          {
+            "selected": false,
+            "text": "10.111.2.216",
+            "value": "10.111.2.216"
+          },
+          {
+            "selected": false,
+            "text": "47.96.62.21",
+            "value": "47.96.62.21"
+          },
+          {
+            "selected": false,
+            "text": "47.96.61.97",
+            "value": "47.96.61.97"
+          },
+          {
+            "selected": false,
+            "text": "47.96.219.115",
+            "value": "47.96.219.115"
+          },
+          {
+            "selected": false,
+            "text": "10.111.6.197",
+            "value": "10.111.6.197"
+          },
+          {
+            "selected": false,
+            "text": "10.111.7.221",
+            "value": "10.111.7.221"
+          },
+          {
+            "selected": false,
+            "text": "10.111.8.242",
+            "value": "10.111.8.242"
+          },
+          {
+            "selected": false,
+            "text": "10.111.10.61",
+            "value": "10.111.10.61"
+          },
+          {
+            "selected": false,
+            "text": "47.98.66.188",
+            "value": "47.98.66.188"
+          },
+          {
+            "selected": false,
+            "text": "116.62.95.159",
+            "value": "116.62.95.159"
+          },
+          {
+            "selected": false,
+            "text": "10.111.5.147",
+            "value": "10.111.5.147"
+          },
+          {
+            "selected": false,
+            "text": "47.98.18.178",
+            "value": "47.98.18.178"
+          },
+          {
+            "selected": false,
+            "text": "101.37.103.196",
+            "value": "101.37.103.196"
+          },
+          {
+            "selected": false,
+            "text": "47.98.88.76",
+            "value": "47.98.88.76"
+          },
+          {
+            "selected": false,
+            "text": "118.31.218.169",
+            "value": "118.31.218.169"
+          },
+          {
+            "selected": false,
+            "text": "10.111.6.224",
+            "value": "10.111.6.224"
+          },
+          {
+            "selected": false,
+            "text": "120.55.32.188",
+            "value": "120.55.32.188"
+          },
+          {
+            "selected": false,
+            "text": "10.111.4.107",
+            "value": "10.111.4.107"
+          },
+          {
+            "selected": false,
+            "text": "47.98.88.11",
+            "value": "47.98.88.11"
+          },
+          {
+            "selected": false,
+            "text": "47.98.19.225",
+            "value": "47.98.19.225"
+          },
+          {
+            "selected": false,
+            "text": "120.55.29.59",
+            "value": "120.55.29.59"
+          },
+          {
+            "selected": false,
+            "text": "10.111.7.222",
+            "value": "10.111.7.222"
+          },
+          {
+            "selected": false,
+            "text": "47.90.111.114",
+            "value": "47.90.111.114"
+          }
+        ],
+        "query": "label_values(aliyun_acs_slb_dashboard_MaxConnection, vip)",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "Prometheus",
+        "definition": "label_values(aliyun_acs_slb_dashboard_MaxConnection{vip=\"$vip\"}, port)",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "port",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "443",
+            "value": "443"
+          },
+          {
+            "selected": false,
+            "text": "80",
+            "value": "80"
+          }
+        ],
+        "query": "label_values(aliyun_acs_slb_dashboard_MaxConnection{vip=\"$vip\"}, port)",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "SLB Detail",
+  "uid": "jqoXlkliz",
+  "version": 12
+}

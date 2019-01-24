@@ -1,6 +1,7 @@
 import json
 import logging
 import time
+import os
 
 from datetime import datetime, timedelta
 from prometheus_client import Summary
@@ -30,14 +31,27 @@ class CollectorConfig(object):
                  ):
         # if metrics is None:
         # raise Exception('Metrics config must be set.')
-        if credential is None or \
-                credential['access_key_id'] is None or \
-                credential['access_key_secret'] is None:
-            raise Exception('Credential is not fully configured.')
+
         self.credential = credential
         self.metrics = metrics
         self.rate_limit = rate_limit
         self.info_metrics = info_metrics
+
+        # ENV
+        access_id = os.environ.get('ALIYUN_ACCESS_ID')
+        access_secret = os.environ.get('ALIYUN_ACCESS_SECRET')
+        region = os.environ.get('ALIYUN_REGION')
+        if self.credential is None:
+            self.credential = {}
+        if access_id is not None and len(access_id) > 0:
+            self.credential['access_key_id'] = access_id
+        if access_secret is not None and len(access_secret) > 0:
+            self.credential['access_key_secret'] = access_secret
+        if region is not None and len(region) > 0:
+            self.credential['region_id'] = region
+        if self.credential['access_key_id'] is None or \
+                self.credential['access_key_secret'] is None:
+            raise Exception('Credential is not fully configured.')
 
 class AliyunCollector(object):
     def __init__(self, config: CollectorConfig):
@@ -107,7 +121,7 @@ class AliyunCollector(object):
         label_keys = self.parse_label_keys(points[0])
         gauge = GaugeMetricFamily(self.format_metric_name(project, name), '', labels=label_keys)
         for point in points:
-            gauge.add_metric([point[k] for k in label_keys], point[measure])
+            gauge.add_metric([str(point[k]) for k in label_keys], point[measure])
         yield gauge
         yield metric_up_gauge(self.format_metric_name(project, name), True)
 

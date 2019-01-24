@@ -1,0 +1,13 @@
+route:
+  group_by:
+  - instanceId
+  - alertname
+  - severity
+  receiver: 'dingtalk'
+
+receivers:
+- name: 'dingtalk'
+  webhook_configs:
+  - send_resolved: false
+    url: http://webhook-dingtalk:8060/dingtalk/main/send
+

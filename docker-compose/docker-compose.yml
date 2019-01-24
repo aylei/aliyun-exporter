@@ -1,0 +1,88 @@
+version: "3.2"
+
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
+  alertmanager_data: {}
+
+# provide the following env
+# - PROMETHEUS_HOST=localhost
+# - DINGTALK_TOKEN=YOUR_DINGTALK_ROBOT_TOKEN
+# - ALIYUN_ACCESS_ID=YOUR_ACCESS_ID
+# - ALIYUN_ACCESS_SECRET=YOUR_ACCESS_SECRET
+# - ALIYUN_REGION=cn-hangzhou
+
+services:
+
+  prometheus:
+    image: prom/prometheus:v2.6.1
+    volumes:
+    - ./prometheus/:/etc/prometheus/
+    - prometheus_data:/prometheus
+    command:
+    - '--config.file=/etc/prometheus/prometheus.yml'
+    - '--storage.tsdb.path=/prometheus'
+    - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+    - '--web.console.templates=/usr/share/prometheus/consoles'
+    - '--web.external-url=http://${PROMETHEUS_HOST}:9090/'
+    - '--web.enable-lifecycle'
+    - '--storage.tsdb.retention=15d'
+    ports:
+    - 9090:9090
+    links:
+    - aliyun-exporter:aliyun-exporter
+    - alertmanager:alertmanager
+    restart: always
+
+  aliyun-exporter:
+    image: aylei/aliyun-exporter:0.3.0
+    volumes:
+    - ./exporter/:/etc/aliyun-exporter
+    command:
+    - '-p'
+    - '9525'
+    - '-c'
+    - '/etc/aliyun-exporter/aliyun-exporter.yml'
+    environment:
+    - ALIYUN_ACCESS_ID=${ALIYUN_ACCESS_ID}
+    - ALIYUN_ACCESS_SECRET=${ALIYUN_ACCESS_SECRET}
+    - ALIYUN_REGION=${ALIYUN_REGION}
+    ports:
+    - 9525:9525
+    restart: always
+
+  alertmanager:
+    image: prom/alertmanager:v0.16.0
+    ports:
+    - 9093:9093
+    volumes:
+    - ./alertmanager/:/etc/alertmanager/
+    - alertmanager_data:/alertmanager
+    command:
+    - '--config.file=/etc/alertmanager/alertmanager.yml'
+    - '--storage.path=/alertmanager'
+    links:
+    - webhook-dingtalk:webhook-dingtalk
+    restart: always
+
+  webhook-dingtalk:
+    image: timonwong/prometheus-webhook-dingtalk:v0.3.0
+    ports:
+    - 8060:8060
+    command:
+    - '--ding.profile=main=https://oapi.dingtalk.com/robot/send?access_token=${DINGTALK_TOKEN}'
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    ports:
+    - 3000:3000
+    volumes:
+    - ./grafana/:/etc/grafana/provisioning/
+    - grafana_data:/var/lib/grafana
+    environment:
+    - GF_INSTALL_PLUGINS=camptocamp-prometheus-alertmanager-datasource
+    links:
+    - prometheus:prometheus
+    - alertmanager:alertmanager
+    restart: always

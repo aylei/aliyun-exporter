@@ -1,0 +1,27 @@
+apiVersion: 1
+
+datasources:
+- name: Prometheus
+  type: prometheus
+  access: proxy
+  orgId: 1
+  url: http://prometheus:9090
+  isDefault: true
+  jsonData:
+    graphiteVersion: "1.1"
+    tlsAuth: false
+    tlsAuthWithCACert: false
+  version: 1
+  editable: true
+- name: Alertmanager
+  type: camptocamp-prometheus-alertmanager-datasource
+  access: proxy
+  orgId: 1
+  url: http://alertmanager:9093
+  editable: true
+  isDefault: false
+  jsonData:
+    severity_critical: '0'
+    severity_high: '1'
+    severity_warning: '2'
+    severity_info: '3'

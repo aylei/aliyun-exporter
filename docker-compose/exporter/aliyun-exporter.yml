@@ -1,0 +1,133 @@
+credential:
+  region_id: cn-hangzhou
+
+metrics:
+  acs_ecs_dashboard:
+  - name: CPUUtilization
+    period: 60
+  - name: DiskReadBPS
+    period: 60
+  - name: DiskReadIOPS
+    period: 60
+  - name: diskusage_utilization
+    period: 15
+  - name: DiskWriteBPS
+    period: 60
+  - name: DiskWriteIOPS
+    period: 60
+  - name: fs_inodeutilization
+    period: 15
+  - name: InternetIn
+    period: 60
+  - name: InternetOut
+    period: 60
+  - name: IntranetIn
+    period: 60
+  - name: IntranetOut
+    period: 60
+  - name: load_15m
+    period: 15
+  - name: load_1m
+    period: 15
+  - name: load_5m
+    period: 15
+  - name: memory_actualusedspace
+    period: 15
+  - name: memory_totalspace
+    period: 15
+  - name: memory_usedspace
+    period: 15
+  - name: memory_usedutilization
+    period: 15
+  - name: net_tcpconnection
+    period: 15
+  acs_rds_dashboard:
+  - name: ConnectionUsage
+    period: 60
+  - name: CpuUsage
+    period: 60
+  - name: DataDelay
+    period: 60
+  - name: DiskUsage
+    period: 60
+  - name: IOPSUsage
+    period: 60
+  - name: MemoryUsage
+    period: 60
+  - name: MySQL_ActiveSessions
+    period: 60
+  - name: MySQL_NetworkInNew
+    period: 60
+  - name: MySQL_NetworkOutNew
+    period: 60
+  - name: Rt
+    period: 30
+  - name: TPS
+    period: 30
+  acs_kvstore:
+  - name: ConnectionUsage
+    period: 60
+  - name: CpuUsage
+    period: 60
+  - name: FailedCount
+    period: 60
+  - name: IntranetIn
+    period: 60
+  - name: IntranetInRatio
+    period: 60
+  - name: IntranetOut
+    period: 60
+  - name: IntranetOutRatio
+    period: 60
+  - name: MemoryUsage
+    period: 60
+  - name: Rt
+    period: 10
+  acs_slb_dashboard:
+  - name: ActiveConnection
+    period: 60
+  - name: DropConnection
+    period: 60
+  - name: DropPacketRX
+    period: 60
+  - name: DropPacketTX
+    period: 60
+  - name: DropTrafficRX
+    period: 60
+  - name: DropTrafficTX
+    period: 60
+  - name: MaxConnection
+    period: 60
+  - name: NewConnection
+    period: 60
+  - name: Qps
+    period: 60
+  - name: Rt
+    period: 60
+  - name: StatusCode2xx
+    period: 60
+  - name: StatusCode3xx
+    period: 60
+  - name: StatusCode4xx
+    period: 60
+  - name: StatusCode5xx
+    period: 60
+  - name: TrafficRXNew
+    period: 60
+  - name: TrafficTXNew
+    period: 60
+  - name: UnhealthyServerCount
+    period: 60
+  - name: UpstreamCode4xx
+    period: 60
+  - name: UpstreamCode5xx
+    period: 60
+  - name: UpstreamRt
+    period: 60
+  - name: HeathyServerCount
+    period: 60
+
+info_metrics:
+- ecs
+- rds
+- redis
