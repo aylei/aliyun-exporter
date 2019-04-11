@@ -90,12 +90,12 @@ Visit metrics in [localhost:9525/metrics](http://localhost:9525/metrics)
 
 Install
 ```bash
-docker pull aylei/aliyun-exporter:0.3.0
+docker pull aylei/aliyun-exporter:0.3.1
 ```
 
 To run the container, external configuration file is required:
 ```bash
-docker run -p 9525:9525 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.3.0 -c $(pwd)/aliyun-exporter.yml
+docker run -p 9525:9525 -v $(pwd)/aliyun-exporter.yml:$(pwd)/aliyun-exporter.yml aylei/aliyun-exporter:0.3.1 -c $(pwd)/aliyun-exporter.yml
 ```
 
 ## Configuration
@@ -152,7 +152,7 @@ you can easily navigate in this pages by hyperlink.
 
 ## Docker Compose
 
-From `0.3.0`, we provide a docker-compose stack to help users building monitoring stack from scratch. The stack contains:
+From `0.3.1`, we provide a docker-compose stack to help users building monitoring stack from scratch. The stack contains:
 
 * aliyun-exporter (this project): Retrieving metrics (and instance information) from Alibaba Cloud.
 * [Prometheus](https://github.com/prometheus/prometheus): Metric storage and alerting calculation.
