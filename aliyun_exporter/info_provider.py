@@ -96,6 +96,6 @@ class InfoProvider():
     def label_values(self, instance, label_keys, nested_handler=None):
         if nested_handler is None:
             nested_handler = {}
-        return map(lambda k: str(nested_handler[k](instance[k])) if k in nested_handler else str(instance[k]),
+        return map(lambda k: str(nested_handler[k](instance[k])) if k in nested_handler else try_or_else(lambda: str(instance[k]), ''),
                    label_keys)
 
