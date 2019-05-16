@@ -131,3 +131,4 @@ info_metrics:
 - ecs
 - rds
 - redis
+- slb

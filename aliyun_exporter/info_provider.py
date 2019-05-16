@@ -7,6 +7,7 @@ from prometheus_client.metrics_core import GaugeMetricFamily
 import aliyunsdkecs.request.v20140526.DescribeInstancesRequest as DescribeECS
 import aliyunsdkrds.request.v20140815.DescribeDBInstancesRequest as DescribeRDS
 import aliyunsdkr_kvstore.request.v20150101.DescribeInstancesRequest as DescribeRedis
+import aliyunsdkslb.request.v20140515.DescribeLoadBalancersRequest as DescribeSLB
 
 from aliyun_exporter.utils import try_or_else
 
@@ -35,6 +36,7 @@ class InfoProvider():
             'ecs': lambda : self.ecs_info(),
             'rds': lambda : self.rds_info(),
             'redis': lambda : self.redis_info(),
+            'slb':lambda : self.slb_info(),
         }[resource]()
 
     def ecs_info(self) -> GaugeMetricFamily:
@@ -53,6 +55,10 @@ class InfoProvider():
     def redis_info(self) -> GaugeMetricFamily:
         req = DescribeRedis.DescribeInstancesRequest()
         return self.info_template(req, 'aliyun_meta_redis_info', to_list=lambda data: data['Instances']['KVStoreInstance'])
+
+    def slb_info(self) -> GaugeMetricFamily:
+        req = DescribeSLB.DescribeLoadBalancersRequest()
+        return self.info_template(req, 'aliyun_meta_slb_info', to_list=lambda data: data['LoadBalancers']['LoadBalancer'])
 
     '''
     Template method to retrieve resource information and transform to metric.
@@ -98,4 +104,5 @@ class InfoProvider():
             nested_handler = {}
         return map(lambda k: str(nested_handler[k](instance[k])) if k in nested_handler else try_or_else(lambda: str(instance[k]), ''),
                    label_keys)
+
 
