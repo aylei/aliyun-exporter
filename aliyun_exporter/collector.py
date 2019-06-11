@@ -87,8 +87,12 @@ class AliyunCollector(object):
             else:
                 requestSummary.labels(project).observe(time.time() - start_time)
         data = json.loads(resp)
-        points = json.loads(data['Datapoints'])
-        return points
+        if 'Datapoints' in data:
+            points = json.loads(data['Datapoints'])
+            return points
+        else:
+            logging.error('Error query metrics for {}_{}, the response body don not have Datapoints field, please check you permission or workload' .format(project, metric))
+            return points
 
     def parse_label_keys(self, point):
         return [k for k in point if k not in ['timestamp', 'Maximum', 'Minimum', 'Average']]
@@ -113,7 +117,7 @@ class AliyunCollector(object):
         try:
             points = self.query_metric(project, metric_name, period)
         except Exception as e:
-            logging.error('Error query metrics for {}_{}'.format(project, metric_name), e)
+            logging.error('Error query metrics for {}_{}'.format(project, metric_name), exc_info=e)
             yield metric_up_gauge(self.format_metric_name(project, name), False)
             return
         if len(points) < 1:
