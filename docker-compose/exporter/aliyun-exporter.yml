@@ -126,9 +126,141 @@ metrics:
     period: 60
   - name: HeathyServerCount
     period: 60
+  acs_mongodb:
+  - name: CPUUtilization
+    period: 300
+  - name: ConnectionAmount
+    period: 300
+  - name: ConnectionUtilization
+    period: 300
+  - name: DataDiskAmount
+    period: 300
+  - name: DiskUtilization
+    period: 300
+  - name: GroupCPUUtilization
+    period: 300
+  - name: GroupConnectionUtilization
+    period: 300
+  - name: GroupDiskUtilization
+    period: 300
+  - name: GroupIOPSUtilization
+    period: 300
+  - name: GroupMemoryUtilization
+    period: 300
+  - name: GroupShardingCPUUtilization
+    period: 300
+  - name: GroupShardingConnectionUtilization
+    period: 300
+  - name: GroupShardingDiskUtilization
+    period: 300
+  - name: GroupShardingIOPSUtilization
+    period: 300
+  - name: GroupShardingMemoryUtilization
+    period: 300
+  - name: IOPSUtilization
+    period: 300
+  - name: InstanceDiskAmount
+    period: 300
+  - name: IntranetIn
+    period: 300
+  - name: IntranetOut
+    period: 300
+  - name: LogDiskAmount
+    period: 300
+  - name: MemoryUtilization
+    period: 300
+  - name: NumberRequests
+    period: 300
+  - name: OpCommand
+    period: 300
+  - name: OpDelete
+    period: 300
+  - name: OpGetmore
+    period: 300
+  - name: OpInsert
+    period: 300
+  - name: OpQuery
+    period: 300
+  - name: OpUpdate
+    period: 300
+  - name: QPS
+    period: 300
+  - name: ShardingCPUUtilization
+    period: 300
+  - name: ShardingConnectionAmount
+    period: 300
+  - name: ShardingConnectionUtilization
+    period: 300
+  - name: ShardingDataDiskAmount
+    period: 300
+  - name: ShardingDataDiskAmountOriginal
+    period: 300
+  - name: ShardingDiskUtilization
+    period: 300
+  - name: ShardingIOPSUtilization
+    period: 300
+  - name: ShardingInstanceDiskAmount
+    period: 300
+  - name: ShardingIntranetIn
+    period: 300
+  - name: ShardingIntranetOut
+    period: 300
+  - name: ShardingLogDiskAmount
+    period: 300
+  - name: ShardingMemoryUtilization
+    period: 300
+  - name: ShardingNumberRequests
+    period: 300
+  - name: ShardingOpCommand
+    period: 300
+  - name: ShardingOpDelete
+    period: 300
+  - name: ShardingOpGetmore
+    period: 300
+  - name: ShardingOpInsert
+    period: 300
+  - name: ShardingOpQuery
+    period: 300
+  - name: ShardingOpUpdate
+    period: 300
+  - name: ShardingQPS
+    period: 300
+  - name: SingleNodeCPUUtilization
+    period: 300
+  - name: SingleNodeConnectionAmount
+    period: 300
+  - name: SingleNodeConnectionUtilization
+    period: 300
+  - name: SingleNodeDataDiskAmount
+    period: 300
+  - name: SingleNodeDiskUtilization
+    period: 300
+  - name: SingleNodeIntranetIn
+    period: 300
+  - name: SingleNodeIntranetOut
+    period: 300
+  - name: SingleNodeMemoryUtilization
+    period: 300
+  - name: SingleNodeNumberRequests
+    period: 300
+  - name: SingleNodeOpCommand
+    period: 300
+  - name: SingleNodeOpDelete
+    period: 300
+  - name: SingleNodeOpGetmore
+    period: 300
+  - name: SingleNodeOpInsert
+    period: 300
+  - name: SingleNodeOpQuery
+    period: 300
+  - name: SingleNodeOpUpdate
+    period: 300
+  - name: SingleNodeQPS
+    period: 300
 
 info_metrics:
 - ecs
 - rds
 - redis
 - slb
+- -mongodb

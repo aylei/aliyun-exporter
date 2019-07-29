@@ -15,3 +15,4 @@ info_metrics:
   - rds
   - redis
   - slb
+  - mongodb

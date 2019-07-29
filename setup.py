@@ -40,6 +40,7 @@ setup(
         'aliyun-python-sdk-rds==2.3.2',
         'aliyun-python-sdk-r-kvstore==2.0.5',
         'aliyun-python-sdk-slb==3.2.8',
+        "aliyun-python-sdk-dds==2.0.4",
     ],
     entry_points={
         'console_scripts': [
